@@ -16,6 +16,10 @@ The initial step of the refactoring process is to modularize the code by separat
 
 - Organizing files into `components` and `services` directories to logically group related parts of the application, improving project structure and navigation.
 
+## Step 2
+
 ### Separation into html/css/ts files
 
 - Benefits of Separation: readability, reusability and maintainability
+
+## Step 3

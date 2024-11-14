@@ -1,36 +1,34 @@
-// src/app/services/message.service.ts
 import { Injectable } from '@angular/core';
-
-export class Message {
-  text: string;
-  status: string;
-
-  constructor(message: string, status: string) {
-    this.text = message;
-    this.status = status;
-  }
-
-  empty() {
-    return this.text === '';
-  }
-}
+import { IMessage, Message } from '@/models/message.model';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root', // Makes it available app-wide
+  providedIn: 'root',
 })
 export class MessageService {
+  private apiUrl = 'http://127.0.0.1:4010/messages';
   messages: Message[] = [];
 
-  async all() {
-    const res = await fetch('http://127.0.0.1:4010/messages');
-    const data = await res.json();
+  constructor(private http: HttpClient) {}
 
-    this.messages = data.messages.map(
-      (message: any) => new Message(message.text, message.status)
+  all(): Observable<Message[]> {
+    return this.http.get<{ messages: IMessage[] }>(this.apiUrl).pipe(
+      map((response) =>
+        response.messages.map((msg) => new Message(msg.text, msg.status))
+      ),
+      catchError((error) => {
+        console.error('Failed to fetch messages:', error);
+        throw error;
+      })
     );
   }
 
-  async add(message: Message) {
+  /**
+   * Usually, I would make an HTTP POST request here to send it to the server
+   */
+  add(message: Message): void {
     this.messages.push(message);
   }
 }

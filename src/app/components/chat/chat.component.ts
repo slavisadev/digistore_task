@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService, Message } from '../../services/message.service';
+import { MessageService } from '@/services/message.service';
+import { Message } from '@/models/message.model';
 import { NgForOf } from '@angular/common';
 import { MessageComponent } from '../message/message.component';
 

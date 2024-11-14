@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIf, NgClass } from '@angular/common';
-import { MessageService, Message } from '../../services/message.service';
+import { MessageService } from '@/services/message.service';
+import { Message } from '@/models/message.model';
 import { MessageComponent } from '../message/message.component';
 
 @Component({
