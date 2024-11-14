@@ -36,6 +36,7 @@ import { MessageComponent } from '../message/message.component';
   `,
   styles: [],
 })
+
 export class CreateMessageComponent {
   message: Message = new Message('', 'draft');
 
