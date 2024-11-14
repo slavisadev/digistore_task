@@ -14,11 +14,22 @@ import { MessageComponent } from '../message/message.component';
 })
 export class ChatComponent implements OnInit {
   messages: Message[] = [];
+  loading: boolean = true;
+  error: string | null = null;
 
   constructor(private messageService: MessageService) {}
 
-  async ngOnInit() {
-    await this.messageService.all();
-    this.messages = this.messageService.messages;
+  ngOnInit() {
+    this.messageService.all().subscribe({
+      next: (messages) => {
+        this.messages = messages;
+        this.loading = false;
+      },
+      error: (err) => {
+        this.error = 'Failed to load messages. Please try again later.';
+        this.loading = false;
+        console.error('Error fetching messages:', err);
+      },
+    });
   }
 }

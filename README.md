@@ -22,4 +22,27 @@ The initial step of the refactoring process is to modularize the code by separat
 
 - Benefits of Separation: readability, reusability and maintainability
 
-## Step 3
+## Step 3: Refactoring `MessageService` and `Message` Model
+
+### Overview
+
+The `MessageService` and `Message` model were refactored to improve maintainability, scalability, and adherence to best practices. The key changes involved separating concerns, centralizing configuration, and leveraging Angular's `HttpClient` for API communication.
+
+### Changes Made
+
+#### 1. Separating the `Message` Model
+
+- Created a new file `message.model.ts` in the `src/app/models/` directory to house the `IMessage` interface and the `Message` class.
+- This separation allows for a clear distinction between models and service logic, promoting modularity and reusability.
+
+## Step 4
+
+### Introduced environment variables
+
+## Step 5: Chat component refactoring and error handling
+
+### Use Observables Instead of Directly Mutating Data
+
+### Error Handling and Loading States
+
+## Step 6: 
