@@ -8,13 +8,8 @@ import { MessageComponent } from '../message/message.component';
   standalone: true,
   providers: [MessageService],
   imports: [NgForOf, MessageComponent],
-  template: `
-    <div>
-      <div *ngFor="let message of messages; index as i">
-        <app-message [message]="message" [no]="i"></app-message>
-      </div>
-    </div>
-  `,
+  templateUrl: './chat.component.html',
+  styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent implements OnInit {
   messages: Message[] = [];

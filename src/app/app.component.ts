@@ -6,13 +6,8 @@ import { CreateMessageComponent } from './components/create-message/create-messa
   selector: 'app-root',
   standalone: true,
   imports: [ChatComponent, CreateMessageComponent],
-  template: `
-    <div class="max-w-md mx-auto">
-      <h1 class="text-2xl my-8">{{ title }}</h1>
-      <app-chat></app-chat>
-      <app-create-message></app-create-message>
-    </div>
-  `,
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'Chat';

@@ -1,22 +1,12 @@
 import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common'; // Import for NgClass if needed
 
 @Component({
   selector: 'app-message',
-  template: `
-    <div style="background-color: #fff;">
-      <span class="bg-slate-400" class="block bg-slate-200 text-slate-500">
-        #{{ no }} - {{ message.status }}
-      </span>
-      <div
-        class="p-2"
-        [ngClass]="{ 'text-slate-500': message.status === 'draft' }"
-      >
-        {{ message.text }}
-      </div>
-    </div>
-  `,
+  templateUrl: './message.component.html',
+  styleUrls: ['./message.component.scss'],
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
 })
 export class MessageComponent {
   @Input({ required: true }) message: any;

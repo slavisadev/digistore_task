@@ -9,34 +9,9 @@ import { MessageComponent } from '../message/message.component';
   standalone: true,
   providers: [MessageService],
   imports: [ReactiveFormsModule, FormsModule, MessageComponent, NgIf, NgClass],
-  template: `
-    <div *ngIf="!message.empty()">
-      <app-message [message]="message" no="preview"></app-message>
-    </div>
-    <form (ngSubmit)="onSubmit()">
-      <label class="mt-4">
-        <div>Write Message</div>
-        <textarea
-          class="block w-full"
-          required
-          name="text"
-          [(ngModel)]="message.text"
-        ></textarea>
-      </label>
-
-      <button
-        type="submit"
-        [disabled]="message.status === 'pending'"
-        class="pointer bg-blue-400 py-2 px-4 mt-2 w-full"
-        [ngClass]="{ 'bg-gray-400': message.status === 'pending' }"
-      >
-        Send
-      </button>
-    </form>
-  `,
-  styles: [],
+  templateUrl: './create-message.component.html',
+  styleUrls: ['./create-message.component.scss'],
 })
-
 export class CreateMessageComponent {
   message: Message = new Message('', 'draft');
 
