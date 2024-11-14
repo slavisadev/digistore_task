@@ -3,18 +3,19 @@ import { IMessage, Message } from '@/models/message.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MessageService {
-  private apiUrl = 'http://127.0.0.1:4010/messages';
+  private messagesApiUrl = `${environment.API_URL}/messages`;
   messages: Message[] = [];
 
   constructor(private http: HttpClient) {}
 
   all(): Observable<Message[]> {
-    return this.http.get<{ messages: IMessage[] }>(this.apiUrl).pipe(
+    return this.http.get<{ messages: IMessage[] }>(this.messagesApiUrl).pipe(
       map((response) =>
         response.messages.map((msg) => new Message(msg.text, msg.status))
       ),
