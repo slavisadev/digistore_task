@@ -26,9 +26,12 @@ export class MessageService {
     );
   }
 
-  /**
-   * Usually, I would make an HTTP POST request here to send it to the server
-   */
+  send(message: Message): Observable<any> {
+    return this.http.post(`${this.messagesApiUrl}/send`, {
+      text: message.text,
+    });
+  }
+
   add(message: Message): void {
     this.messages.push(message);
   }

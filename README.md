@@ -45,4 +45,13 @@ The `MessageService` and `Message` model were refactored to improve maintainabil
 
 ### Error Handling and Loading States
 
-## Step 6: 
+## Step 6:
+
+### Key Changes and Improvements:
+
+- Moved the HTTP Request to the Service:
+- The sendMessage() method in the MessageService handles the HTTP POST request using HttpClient.
+- Replaced fetch with HttpClient:
+- HttpClient.post() is used instead of fetch. This method automatically handles JSON serialization and deserialization.
+- Error Handling and Loading State:
+- Added a loading state and error handling logic in the CreateMessageComponent to provide feedback to the user.

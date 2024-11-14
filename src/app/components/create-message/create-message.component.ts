@@ -15,17 +15,29 @@ import { MessageComponent } from '../message/message.component';
 })
 export class CreateMessageComponent {
   message: Message = new Message('', 'draft');
+  loading: boolean = false;
+  error: string | null = null;
 
   constructor(private messageService: MessageService) {}
 
-  async onSubmit() {
+  onSubmit() {
     this.message.status = 'pending';
-    const res = await fetch('http://127.0.0.1:4010/messages/send', {
-      method: 'GET',
-      body: JSON.stringify({ text: this.message.text }),
+    this.loading = true;
+    this.error = null;
+
+    this.messageService.send(this.message).subscribe({
+      next: () => {
+        this.message.status = 'sent';
+        this.messageService.add(this.message);
+        this.message = new Message('', 'draft');
+        this.loading = false;
+      },
+      error: (err) => {
+        this.message.status = 'failed';
+        this.error = 'Failed to send the message.';
+        console.error('Error sending message:', err);
+        this.loading = false;
+      },
     });
-    this.message.status = res.status === 204 ? 'sent' : 'failed';
-    await this.messageService.add(this.message);
-    this.message = new Message('', 'draft');
   }
 }

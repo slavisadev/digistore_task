@@ -1,10 +1,12 @@
+export type MessageStatus = 'draft' | 'pending' | 'sent' | 'failed';
+
 export interface IMessage {
   text: string;
-  status: string;
+  status: MessageStatus;
 }
 
 export class Message implements IMessage {
-  constructor(public text: string, public status: string) {}
+  constructor(public text: string, public status: MessageStatus) {}
 
   empty() {
     return this.text === '';
